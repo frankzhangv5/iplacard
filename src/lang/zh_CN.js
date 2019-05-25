@@ -10,7 +10,9 @@ module.exports = {
     home: {
         edit: '编辑内容',
         predefine: '预设场景',
+        predefineSubtitle:'机场 火车站 滴滴 ...',
         customize: '自定义效果',
+        customizeSubtitle:'字体大小 背景色 动画效果 ...'
     },
     customize: {
         textFormatSettings: '文本格式设置',

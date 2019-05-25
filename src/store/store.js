@@ -77,7 +77,7 @@ export default new Vuex.Store({
         bgColor: "#ff3d3b",
         text: "iPlacard",
         fontSize: 8,
-        fontFamily: "texas_ledregular",
+        fontFamily: "'texas_ledregular', Arial, sans-serif",
         txtColor: "#ffffff",
         animate: "neonRed",
         lang: 'zh_CN',

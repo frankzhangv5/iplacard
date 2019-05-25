@@ -29,11 +29,11 @@
       </v-ons-list-item>
       <v-ons-list-item @click="handlePredefinedClick" modifier="chevron" tappable>
         <span class="list-item__title">{{$t('home.predefine')}}</span>
-        <span class="list-item__subtitle">接机场景 滴滴等车场景 ...</span>
+        <span class="list-item__subtitle">{{$t('home.predefineSubtitle')}}</span>
       </v-ons-list-item>
       <v-ons-list-item @click="handleCustomizeClick" modifier="chevron" tappable>
         <span class="list-item__title">{{$t('home.customize')}}</span>
-        <span class="list-item__subtitle">字体大小 背景色 动画效果 ...</span>
+        <span class="list-item__subtitle">{{$t('home.customizeSubtitle')}}</span>
       </v-ons-list-item>
     </v-ons-list>
   </v-ons-page>
@@ -56,7 +56,7 @@ export default {
       return ` animated infinite ${this.animate}`;
     },
     previewTextStyle: function() {
-      return `font-size:${this.fontSize / 2}em;font-family:${
+      return `font-size:${this.fontSize / 3.0}em;font-family:${
         this.fontFamily
       };color:${this.txtColor};
       white-space:nowrap;

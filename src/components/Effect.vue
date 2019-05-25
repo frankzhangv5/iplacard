@@ -65,7 +65,7 @@ export default {
       return ` animated slower infinite ${this.animate}`;
     },
     previewTextStyle: function() {
-      return `font-size:${this.fontSize / 2}em;font-family:${
+      return `font-size:${this.fontSize / 3.0}em;font-family:${
         this.fontFamily
       };color:${this.txtColor};
       white-space:nowrap;

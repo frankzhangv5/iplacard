@@ -10,7 +10,9 @@ module.exports = {
     home: {
         edit: 'Content Edit',
         predefine: 'Predefined Scenes',
+        predefineSubtitle:'Airport RailwayStation Uber ...',
         customize: 'Customize Effect',
+        customizeSubtitle:'FontSize Background Animation ...'
     },
     customize:{
         textFormatSettings:'Text Format Settings',

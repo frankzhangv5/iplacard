@@ -112,7 +112,17 @@ export default {
         { text: "7em", value: 7 },
         { text: "8em", value: 8 },
         { text: "9em", value: 9 },
-        { text: "10em", value: 10 }
+        { text: "10em", value: 10 },
+        { text: "11em", value: 11 },
+        { text: "12em", value: 12 },
+        { text: "13em", value: 13 },
+        { text: "14em", value: 14 },
+        { text: "15em", value: 15 },
+        { text: "16em", value: 16 },
+        { text: "17em", value: 17 },
+        { text: "18em", value: 18 },
+        { text: "19em", value: 19 },
+        { text: "20em", value: 20 },
       ],
       opacity: 0.5
     };
