@@ -1,0 +1,192 @@
+@keyframes neonRed {
+
+  from {
+    text-shadow: 0 0 10px #fff,
+               0 0 20px  #ffffff,
+               0 0 30px  #fff,
+               0 0 40px  #FF1177,
+               0 0 70px  #FF1177,
+               0 0 80px  #FF1177,
+               0 0 100px #FF1177,
+               0 0 150px #FF1177;
+    color: #fff;
+  }
+  to {
+    text-shadow: 0 0 5px #fff,
+               0 0 10px #fff,
+               0 0 15px #fff,
+               0 0 20px #FF1177,
+               0 0 35px #FF1177,
+               0 0 40px #FF1177,
+               0 0 50px #FF1177,
+               0 0 75px #FF1177;
+    color: #FF1177;
+  }
+}
+
+@keyframes neonBlue {
+  from {
+    text-shadow: 0 0 10px #fff,
+               0 0 20px  #fff,
+               0 0 30px  #fff,
+               0 0 40px  #228DFF,
+               0 0 70px  #228DFF,
+               0 0 80px  #228DFF,
+               0 0 100px #228DFF,
+               0 0 150px #228DFF;
+    color: #fff;
+  }
+  to {
+    text-shadow: 0 0 5px #fff,
+               0 0 10px #fff,
+               0 0 15px #fff,
+               0 0 20px #228DFF,
+               0 0 35px #228DFF,
+               0 0 40px #228DFF,
+               0 0 50px #228DFF,
+               0 0 75px #228DFF;
+    color: #228DFF;
+  }
+}
+
+@keyframes neonYellow {
+  from {
+    text-shadow: 0 0 10px #fff,
+               0 0 20px  #fff,
+               0 0 30px  #fff,
+               0 0 40px  #FFDD1B,
+               0 0 70px  #FFDD1B,
+               0 0 80px  #FFDD1B,
+               0 0 100px #FFDD1B,
+               0 0 150px #FFDD1B;
+    color: #fff;
+  }
+  to {
+    text-shadow: 0 0 5px #fff,
+               0 0 10px #fff,
+               0 0 15px #fff,
+               0 0 20px #FFDD1B,
+               0 0 35px #FFDD1B,
+               0 0 40px #FFDD1B,
+               0 0 50px #FFDD1B,
+               0 0 75px #FFDD1B;
+    color: #FFDD1B;
+  }
+}
+
+@keyframes neonGreen {
+  from {
+    text-shadow: 0 0 10px #fff,
+               0 0 20px  #fff,
+               0 0 30px  #fff,
+               0 0 40px  #B6FF00,
+               0 0 70px  #B6FF00,
+               0 0 80px  #B6FF00,
+               0 0 100px #B6FF00,
+               0 0 150px #B6FF00;
+    color:#fff;
+  }
+  to {
+    text-shadow: 0 0 5px #fff,
+               0 0 10px #fff,
+               0 0 15px #fff,
+               0 0 20px #B6FF00,
+               0 0 35px #B6FF00,
+               0 0 40px #B6FF00,
+               0 0 50px #B6FF00,
+               0 0 75px #B6FF00;
+    color: #B6FF00;
+  }
+}
+
+@keyframes neonOrange {
+  from {
+    text-shadow: 0 0 10px #fff,
+               0 0 20px  #fff,
+               0 0 30px  #fff,
+               0 0 40px  #FF9900,
+               0 0 70px  #FF9900,
+               0 0 80px  #FF9900,
+               0 0 100px #FF9900,
+               0 0 150px #FF9900;
+    color: #fff;
+  }
+  to {
+    text-shadow: 0 0 5px #fff,
+               0 0 10px #fff,
+               0 0 15px #fff,
+               0 0 20px #FF9900,
+               0 0 35px #FF9900,
+               0 0 40px #FF9900,
+               0 0 50px #FF9900,
+               0 0 75px #FF9900;
+    color: #FF9900;
+  }
+}
+
+@keyframes neonPurple {
+  from {
+    text-shadow: 0 0 10px #fff,
+               0 0 20px #fff,
+               0 0 30px #fff,
+               0 0 40px #ff00de,
+               0 0 70px #ff00de,
+               0 0 80px #ff00de,
+               0 0 100px #ff00de,
+               0 0 150px #ff00de;
+    color:#fff;
+  }
+  to {
+    text-shadow: 0 0 5px #fff,
+               0 0 10px #fff,
+               0 0 15px #fff,
+               0 0 20px #ff00de,
+               0 0 35px #ff00de,
+               0 0 40px #ff00de,
+               0 0 50px #ff00de,
+               0 0 75px #ff00de;
+    color: #ff00de;
+  }
+}
+
+.neonRed {
+  animation-name: neonRed;
+  animation-duration: 2.5s;
+  animation-timing-function: ease-in-out;
+  /* animation-direction: alternate; */
+}
+
+.neonBlue {
+  animation-name: neonBlue;
+  animation-duration:  2.5s;
+  animation-timing-function: ease-in-out;
+  /* animation-direction: alternate; */
+}
+
+.neonYellow {
+  animation-name: neonYellow;
+  animation-duration:  2.5s;
+  animation-timing-function: ease-in-out;
+  /* animation-direction: alternate; */
+}
+
+.neonGreen {
+  animation-name: neonGreen;
+  animation-duration:  2.5s;
+  animation-timing-function: ease-in-out;
+  /* animation-direction: alternate; */
+}
+
+.neonOrange {
+  animation-name: neonOrange;
+  animation-duration:  2.5s;
+  animation-timing-function: ease-in-out;
+  /* animation-direction: alternate; */
+}
+
+.neonPurple {
+  animation-name: neonPurple;
+  animation-duration: 2.5s;
+  animation-timing-function: ease-in-out;
+  /* animation-direction: alternate; */
+}
