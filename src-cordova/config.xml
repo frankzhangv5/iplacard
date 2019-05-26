@@ -44,4 +44,5 @@
     <preference name="FadeSplashScreenDuration" value="800"/>
     <preference name="ShowSplashScreenSpinner" value="false"/>
     <preference name="Orientation" value="portrait" />
+    <preference name="Fullscreen" value="true" />
 </widget>
