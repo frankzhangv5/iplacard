@@ -2,7 +2,12 @@
   <v-ons-page>
     <custom-toolbar v-bind="toolbarInfo"></custom-toolbar>
     <v-ons-list>
-      <v-ons-list-item style="padding:0;" v-for="effect of effects" :key="effect.label" modifier="divider">
+      <v-ons-list-item
+        style="padding:0;"
+        v-for="effect of effects"
+        :key="effect.label"
+        modifier="divider"
+      >
         <effect v-bind="effect"></effect>
       </v-ons-list-item>
     </v-ons-list>
@@ -22,7 +27,8 @@ export default {
           fontSize: 6,
           bgColor: "#07c160",
           txtColor: "#ffffff",
-          animate: "bounce"
+          animate: "bounce",
+          infinite: true
         },
         {
           label: "火车站接人",
@@ -30,7 +36,8 @@ export default {
           fontSize: 6,
           bgColor: "#2e8cff",
           txtColor: "#ffffff",
-          animate: "flash"
+          animate: "flash",
+          infinite: true
         },
         {
           label: "滴滴等车",
@@ -38,7 +45,8 @@ export default {
           fontSize: 6,
           bgColor: "#fe523c",
           txtColor: "#ffffff",
-          animate: "heartBeat"
+          animate: "heartBeat",
+          infinite: true
         },
         {
           label: "演唱会",
@@ -46,7 +54,8 @@ export default {
           fontSize: 6,
           bgColor: "#ffb129",
           txtColor: "#ffffff",
-          animate: "swing"
+          animate: "swing",
+          infinite: true
         }
       ]
     };

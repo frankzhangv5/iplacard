@@ -4,6 +4,8 @@ import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex);
 
+ const strictMode = process.env.NODE_ENV !== 'production';
+
 export default new Vuex.Store({
   state: {
     app_name: "闪光",
@@ -12,7 +14,7 @@ export default new Vuex.Store({
   plugins: [createPersistedState()],
   modules: {
     navigator: {
-      strict: true,
+      strict: strictMode,
       namespaced: true,
       state: {
         stack: [],
@@ -41,7 +43,7 @@ export default new Vuex.Store({
     },
 
     splitter: {
-      strict: true,
+      strict: strictMode,
       namespaced: true,
       state: {
         open: false
@@ -58,7 +60,7 @@ export default new Vuex.Store({
     },
 
     tabbar: {
-      strict: true,
+      strict: strictMode,
       namespaced: true,
       state: {
         index: 0
@@ -71,15 +73,15 @@ export default new Vuex.Store({
     },
 
     settings: {
-      strict: true,
+      strict: strictMode,
       namespaced: true,
       state: {
-        bgColor: "#ff3d3b",
-        text: "iPlacard",
+        bgColor: "#000000",
+        text: "Welcome to Wuhan !",
         fontSize: 8,
-        fontFamily: "'texas_ledregular', Arial, sans-serif",
+        fontFamily: '-apple-system, "Helvetica Neue", "Helvetica", "Arial"',
         txtColor: "#ffffff",
-        animate: "neonRed",
+        animate: "neonBlue",
         lang: 'zh_CN',
         theme: [255, 59, 61],
         favorites: []

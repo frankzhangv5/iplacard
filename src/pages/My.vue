@@ -1,7 +1,7 @@
 <template>
   <v-ons-page modifier="white">
     <v-ons-card style="margin:0; margin-bottom:10px; padding:0;">
-      <div id="wallpaper">
+      <div id="wallpaper" :style="wallpaperTheme">
         <img src="../assets/logo.png" alt>
         <v-ons-row id="github">
           <v-ons-col id="col-star">
@@ -43,6 +43,7 @@ import Settings from "./Settings.vue";
 import Favorites from "./Favorites.vue";
 import Thanks from "./Thanks.vue";
 import About from "./About.vue";
+import { mapState } from "vuex";
 
 export default {
   components: {
@@ -53,22 +54,22 @@ export default {
       settings: [
         {
           component: Settings,
-          title: this.$t('my.settings'),
+          title: this.$t("my.settings"),
           icon: "md-settings"
         },
         {
           component: Favorites,
-          title: this.$t('my.favorites'),
+          title: this.$t("my.favorites"),
           icon: "md-favorite"
         },
         {
           component: Thanks,
-          title: this.$t('my.thanks'),
+          title: this.$t("my.thanks"),
           icon: "md-star"
         },
         {
           component: About,
-          title: this.$t('my.about'),
+          title: this.$t("my.about"),
           icon: "md-account"
         }
       ]
@@ -81,13 +82,23 @@ export default {
         data() {
           return {
             toolbarInfo: {
-              backLabel: this.$t('tabs.my'),
+              backLabel: this.$t("tabs.my"),
               title: key
             }
           };
         }
       });
     }
+  },
+  computed: {
+    wallpaperTheme: function() {
+      return {
+        backgroundColor: `rgb(${this.theme.join(",")})`
+      };
+    },
+    ...mapState({
+      theme: state => state.settings.theme
+    })
   }
 };
 </script>
@@ -98,7 +109,7 @@ export default {
   width: 100%;
   height: 200px;
   line-height: 200px;
-  background-color: #ff3b3d;
+  /* background-color: #ff3b3d; */
 }
 
 #github {

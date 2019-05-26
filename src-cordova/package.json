@@ -14,6 +14,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "cordova-android": "^8.0.0",
+    "cordova-plugin-insomnia": "^4.3.0",
     "cordova-plugin-splashscreen": "^5.0.2"
   },
   "devDependencies": {
@@ -22,7 +23,8 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-splashscreen": {}
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-insomnia": {}
     },
     "platforms": [
       "android"

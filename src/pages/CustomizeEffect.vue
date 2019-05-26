@@ -97,10 +97,10 @@ export default {
         { text: "Sans-Serif", value: "Sans-Serif" },
         { text: "Roboto", value: "'Roboto', Verdana, sans-serif" },
         {
-          text: "Apple-System",
+          text: "Apple System",
           value: '-apple-system, "Helvetica Neue", "Helvetica", "Arial"'
         },
-        { text: "TexasLED", value: "'texas_ledregular', Arial, sans-serif" },
+        { text: "Texas LED", value: "'texas_ledregular', Arial, sans-serif" },
       ],
       fontSizes: [
         { text: "1em", value: 1 },

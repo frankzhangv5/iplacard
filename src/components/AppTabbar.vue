@@ -33,13 +33,9 @@ import Home from "../pages/Home.vue";
 import Animate from "../pages/Animate.vue";
 import My from "../pages/My.vue";
 
+
 // Just a linear interpolation formula
 const lerp = (x0, x1, t) => parseInt((1 - t) * x0 + t * x1, 10);
-// RGB colors
-// const red = [244, 67, 54];
-// const blue = [30, 136, 229];
-// const purple = [103, 58, 183];
-// const red = [255, 59, 61]; //#ff3b3d
 
 export default {
   props: ["theme"],
@@ -88,7 +84,7 @@ export default {
         this.tabs[b].top || 0,
         ratio
       );
-    }
+    },
   },
 
   computed: {

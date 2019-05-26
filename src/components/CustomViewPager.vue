@@ -1,6 +1,6 @@
 <template id="main">
   <v-ons-page>
-    <v-ons-carousel fullscreen swipeable auto-scroll overscrollable :index.sync="carouselIndex">
+    <v-ons-carousel fullscreen auto-scroll overscrollable :index.sync="carouselIndex">
       <v-ons-carousel-item
         v-for="(value, key) in items"
         :key="key"

@@ -1,6 +1,6 @@
 <template>
   <v-ons-page modifier="white">
-    <div class="profile-pic">
+    <div class="profile-pic" :style="profileTheme">
       <img width="40px" height="40px" src="../assets/logo.png">
     </div>
 
@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   methods: {
     loadLink(url) {
@@ -41,17 +43,27 @@ export default {
           url: "https://github.com/frankzhangv5/iplacard/"
         },
         {
-          title: this.$t('social.blog'),
+          title: this.$t("social.blog"),
           icon: "md-blogger",
           url: "http://zhangfeng.ink/my-blogs/"
         },
         {
-          title: this.$t('social.weibo'),
+          title: this.$t("social.weibo"),
           icon: "fa-weibo",
           url: "https://weibo.com/u/5991851238"
         }
       ]
     };
+  },
+  computed: {
+    profileTheme: function() {
+      return {
+        backgroundColor: `rgb(${this.theme.join(",")})`
+      };
+    },
+    ...mapState({
+      theme: state => state.settings.theme
+    })
   }
 };
 </script>
@@ -60,14 +72,14 @@ export default {
 .profile-pic {
   width: 100%;
   height: 15%;
-  background-color: #ff3b3d;
+  /* background-color: #ff3b3d; */
   border-bottom: 1px solid #ddd;
   padding-bottom: 8px;
   position: relative;
 }
-.page--material .profile-pic {
+/* .page--material .profile-pic {
   background-color: #ff3b3d;
-}
+} */
 
 .profile-pic > img {
   display: block;

@@ -15,31 +15,32 @@
           icon="md-favorite"
         ></v-ons-icon>
       </div>
-      <div class="icon" @click="play">
+      <div class="icon" @click="preview">
         <v-ons-icon size="24px" class="play" icon="md-play"></v-ons-icon>
       </div>
       <div class="icon" @click="use">
         <v-ons-icon size="24px" class="use" :class="{checked: isUseChecked}" icon="md-check"></v-ons-icon>
       </div>
     </div>
-    <v-ons-modal
-      @click="modalVisible = false"
-      @postshow="postshow"
-      @prehide="prehide"
-      :visible="modalVisible"
-      :style="modalStyle"
-    >{{text}}</v-ons-modal>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import { eventHub } from "../event";
 
 export default {
-  props: ["label", "fontSize", "fontFamily", "txtColor", "bgColor", "animate"],
+  props: [
+    "label",
+    "fontSize",
+    "fontFamily",
+    "txtColor",
+    "bgColor",
+    "animate",
+    "infinite"
+  ],
   data() {
     return {
-      modalVisible: false,
       startX: 0,
       endX: 0,
       moveX: 0,
@@ -49,44 +50,40 @@ export default {
   },
 
   computed: {
-    isFavoriteChecked: function() {
-      if (this.favorites.indexOf(this.animate) != -1) {
-        return true;
-      }
-      return false;
+    isFavoriteChecked: {
+      get: function() {
+        if (this.favorites.indexOf(this.animate) != -1) {
+          return true;
+        }
+        return false;
+      },
+      set: function() {}
     },
-    isUseChecked: function() {
-      if (this.animateInuse === this.animate) {
-        return true;
-      }
-      return false;
+    isUseChecked: {
+      get: function() {
+        if (this.animateInuse === this.animate) {
+          return true;
+        }
+        return false;
+      },
+      set: function() {}
     },
     animateCls: function() {
-      return ` animated slower infinite ${this.animate}`;
+      return this.infinite
+        ? `animated infinite ${this.animate}`
+        : `animated ${this.animate}`;
     },
     previewTextStyle: function() {
       return `font-size:${this.fontSize / 3.0}em;font-family:${
         this.fontFamily
       };color:${this.txtColor};
+      font-weight:bold;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;`;
     },
     backgroundStyle: function() {
       return `background-color:${this.bgColor} !important;`;
-    },
-    modalStyle: function() {
-      return `font-size:${this.fontSize}em;
-      font-family:${this.fontFamily};
-      color:${this.txtColor};
-      writing-mode:vertical-lr;
-      background-color:${this.bgColor} !important;
-      writing-mode: vertical-rl;
-      text-orientation: sideways;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      word-break:keep-all;`;
     },
     ...mapState({
       text: state => state.settings.text,
@@ -106,10 +103,17 @@ export default {
       }
       this.sliderStyle = "transform:translateX(0px)";
     },
-    play() {
+    preview() {
       // eslint-disable-next-line
-      console.log("play");
-      this.modalVisible = true;
+      console.log("fire preview");
+      eventHub.$emit("preview", {
+        label: this.label,
+        fontSize: this.fontSize,
+        fontFamily: this.fontFamily,
+        txtColor: this.txtColor,
+        bgColor: this.bgColor,
+        animate: this.animate
+      });
       this.sliderStyle = "transform:translateX(0px)";
     },
     use() {
@@ -122,16 +126,6 @@ export default {
         this.isUseChecked = true;
       }
       this.sliderStyle = "transform:translateX(0px)";
-    },
-    postshow(event) {
-      let el = event.modal.getElementsByClassName("modal__content")[0];
-      el.className += this.animateCls;
-      el.style.fontFamily = this.fontFamily;
-    },
-    prehide(event) {
-      let el = event.modal.getElementsByClassName("modal__content")[0];
-      el.className = "modal__content";
-      el.style.fontFamily = "";
     },
     touchStart(ev) {
       ev = ev || event;
@@ -213,7 +207,7 @@ export default {
 .slider > .menu {
   position: absolute;
   width: 20%;
-  line-height: 147px;
+  /* line-height: 147px; */
   right: 0;
   bottom: 0;
   background-color: #07c160;
@@ -224,11 +218,11 @@ export default {
   line-height: 46.5px;
 }
 .favorite:hover {
-  color: #f65b6e;
+  color: black;
 }
 
 .favorite.checked {
-  color: #f65b6e;
+  color: #ff3b3d;
 }
 
 .play:hover {
@@ -239,6 +233,6 @@ export default {
   color: black;
 }
 .use.checked {
-  color: #f65b6e;
+  color: #ff3b3d;
 }
 </style>

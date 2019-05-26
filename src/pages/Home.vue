@@ -23,17 +23,15 @@
     >{{text}}</v-ons-modal>
     <v-ons-list>
       <v-ons-list-header>{{$t('my.settings')}}</v-ons-list-header>
-      <v-ons-list-item @click="handleEditClick" modifier="chevron" tappable>
-        <span class="list-item__title">{{$t('home.edit')}}</span>
-        <span class="list-item__subtitle">{{text}}</span>
-      </v-ons-list-item>
-      <v-ons-list-item @click="handlePredefinedClick" modifier="chevron" tappable>
-        <span class="list-item__title">{{$t('home.predefine')}}</span>
-        <span class="list-item__subtitle">{{$t('home.predefineSubtitle')}}</span>
-      </v-ons-list-item>
-      <v-ons-list-item @click="handleCustomizeClick" modifier="chevron" tappable>
-        <span class="list-item__title">{{$t('home.customize')}}</span>
-        <span class="list-item__subtitle">{{$t('home.customizeSubtitle')}}</span>
+      <v-ons-list-item
+        v-for="item of items"
+        :key="item.title"
+        @click="push(item.component, item.title)"
+        modifier="chevron"
+        tappable
+      >
+        <span class="list-item__title">{{item.title}}</span>
+        <span class="list-item__subtitle">{{item.subtitle}}</span>
       </v-ons-list-item>
     </v-ons-list>
   </v-ons-page>
@@ -44,41 +42,58 @@ import TextEditor from "./TextEditor.vue";
 import PredefinedScenes from "./PredefinedScenes.vue";
 import CustomizeEffect from "./CustomizeEffect.vue";
 import { mapState } from "vuex";
+import { eventHub } from "../event.js";
 
 export default {
+  created: function() {
+    eventHub.$on("preview", this.preview);
+  },
+  beforeDestroy: function() {
+    eventHub.$off("preview", this.preview);
+  },
   data() {
     return {
-      modalVisible: false
+      modalVisible: false,
+      modalStyle: "",
+      effect: {}
     };
   },
   computed: {
+    items: function() {
+      return [
+        {
+          component: TextEditor,
+          title: this.$t("home.edit"),
+          subtitle: this.text
+        },
+        {
+          component: PredefinedScenes,
+          title: this.$t("home.predefine"),
+          subtitle: this.$t("home.predefineSubtitle")
+        },
+        {
+          component: CustomizeEffect,
+          title: this.$t("home.customize"),
+          subtitle: this.$t("home.customizeSubtitle")
+        }
+      ];
+    },
     animateCls: function() {
-      return ` animated infinite ${this.animate}`;
+      return `animated infinite ${this.animate}`;
     },
     previewTextStyle: function() {
       return `font-size:${this.fontSize / 3.0}em;font-family:${
         this.fontFamily
       };color:${this.txtColor};
+      font-weight:bold;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;`;
     },
-    modalStyle: function() {
-      return `font-size:${this.fontSize}em;
-      font-family:${this.fontFamily};
-      color:${this.txtColor};
-      background-color:${this.bgColor} !important;
-      writing-mode: vertical-rl;
-      text-orientation: sideways;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      word-break:keep-all;`;
-    },
+
     backgroundStyle: function() {
       return `background-color:${this.bgColor} !important;`;
     },
-    // 使用对象展开运算符将此对象混入到外部对象中
     ...mapState({
       text: state => state.settings.text,
       fontSize: state => state.settings.fontSize,
@@ -92,25 +107,65 @@ export default {
   methods: {
     postshow(event) {
       let el = event.modal.getElementsByClassName("modal__content")[0];
-      el.className += this.animateCls;
-      el.style.fontFamily = this.fontFamily;
+      el.className += ` animated infinite ${this.effect.animate}`;
+      el.style.fontFamily = this.effect.fontFamily;
+      el.style.color = this.effect.txtColor;
+      window.plugins &&
+        window.plugins.insomnia &&
+        window.plugins.insomnia.keepAwake(
+          function() {
+            // eslint-disable-next-line
+            console.log("set keepAwake success");
+          },
+          function() {
+            // eslint-disable-next-line
+            console.log("set keepAwake failed");
+          }
+        );
     },
     prehide(event) {
       let el = event.modal.getElementsByClassName("modal__content")[0];
       el.className = "modal__content";
       el.style.fontFamily = "";
-    },
-    handleEditClick() {
-      this.push(TextEditor, this.$t("home.edit"));
-    },
-    handlePredefinedClick() {
-      this.push(PredefinedScenes, this.$t("home.predefine"));
-    },
-    handleCustomizeClick() {
-      this.push(CustomizeEffect, this.$t("home.customize"));
+      window.plugins &&
+        window.plugins.insomnia &&
+        window.plugins.insomnia.allowSleepAgain(
+          function() {
+            // eslint-disable-next-line
+            console.log("set allowSleepAgain success");
+          },
+          function() {
+            // eslint-disable-next-line
+            console.log("set allowSleepAgain failed");
+          }
+        );
     },
     play() {
+      this.preview({
+        label: "Default",
+        fontSize: this.fontSize,
+        fontFamily: this.fontFamily,
+        txtColor: this.txtColor,
+        bgColor: this.bgColor,
+        animate: this.animate
+      });
+    },
+    preview(effect) {
+      this.effect = effect;
+      this.modalStyle = `font-size:${effect.fontSize}em;
+      font-family:${effect.fontFamily};
+      color:${effect.txtColor};
+      background-color:${effect.bgColor} !important;
+      font-weight:bold;
+      writing-mode: vertical-rl;
+      text-orientation: sideways;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      word-break:keep-all;`;
       this.modalVisible = true;
+      // eslint-disable-next-line
+      console.log("on preview : " + effect);
     },
     push(page, key) {
       this.$store.commit("navigator/push", {
