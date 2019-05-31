@@ -1,5 +1,6 @@
 # iPlacard
-用移动设备自定义和显示精美的接机牌；机场，车站接人和等车，演唱会等场景的好帮手～
+OnsenUI+Vue+Animate.css+Cordova, 用途：电子接机牌，手持标语，座位牌等。
+
 
 ## Project setup
 ```
@@ -37,6 +38,3 @@ cordova run android --release
 
 ### App's screenshots
 ![HOME](screenshots/Home.png)
-![ANIMATE](screenshots/Animate.png)
-![MY](screenshots/My.png)
-![PLACARD](screenshots/Placard.png)
