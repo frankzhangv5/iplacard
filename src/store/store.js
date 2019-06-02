@@ -76,13 +76,13 @@ export default new Vuex.Store({
       namespaced: true,
       state: {
         bgColor: "#000000",
-        text: "Welcome to Earth !",
-        fontSize: 8,
+        text: "Welcome to Here!",
+        fontSize: 6,
         fontFamily: "Helvetica Neue",
         txtColor: "#ffffff",
         animate: "neonBlue",
         label: "neonBlue",
-        lang: 'zh_CN',
+        lang: 'en_US',
         theme: [255, 59, 61],
         favorites: []
       },

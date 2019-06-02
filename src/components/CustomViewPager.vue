@@ -2,11 +2,17 @@
   <v-ons-page>
     <v-ons-carousel fullscreen auto-scroll overscrollable :index.sync="carouselIndex">
       <v-ons-carousel-item
-        v-for="(value, key) in items"
-        :key="key"
-        :style="{backgroundColor: value}"
+        v-for="item of items"
+        :key="item.key"
+        style="display:table-cell;text-align:center;"
+        :style="{backgroundColor: item.bgColor}"
       >
-        <div style="text-align: center; font-size: 30px; margin-top: 250px; color: #fff;">{{key}}</div>
+        <div
+          class="animated slower"
+          :class="item.animate"
+          style="display:inline-block;height:100%;font-weight:bold;writing-mode: vertical-rl;text-orientation: sideways;"
+          :style="item.style"
+        >{{item.text}}</div>
       </v-ons-carousel-item>
     </v-ons-carousel>
 
@@ -32,15 +38,35 @@ export default {
   data() {
     return {
       carouselIndex: 0,
-      prev_text: "跳过",
-      next_text: "继续",
-      items: {
-        BLUE: "#085078",
-        DARK: "#373B44",
-        ORANGE: "#D38312"
-      }
+      prev_text: "SKIP",
+      next_text: "NEXT",
+      items: [
+        {
+          key: 1,
+          bgColor: "#ff3b3d",
+          style:
+            "font-family:alien_encountersregular;font-size:6em;color:#ffffff;z-index:10;",
+          text: "Welcome to here !",
+          animate: "rotateIn"
+        },
+        {
+          key: 2,
+          bgColor: "#1e88e5",
+          style: "font-family:lianmengqiyilushuaizhengruiRg;font-size:6em;color:#ffffff;z-index:9;",
+          text: "欢迎使用！",
+          animate: "zoomIn"
+        },
+        {
+          key: 3,
+          bgColor: "#673ab7",
+          style: "font-family:Helvetica;font-size:6em;color:#ffffff;z-index:8;",
+          text: "Bienvenue !",
+          animate: "slideInUp"
+        }
+      ]
     };
   },
+  computed: {},
   methods: {
     close() {
       if (this.navigator.pageStack.length > 1) {
@@ -71,13 +97,13 @@ export default {
     carouselIndex: function() {
       var carouselLen = Object.keys(this.items).length;
       if (this.carouselIndex > 0 && this.carouselIndex < carouselLen - 1) {
-        this.prev_text = "返回";
+        this.prev_text = "BACK";
       } else if (this.carouselIndex == carouselLen - 1) {
         this.prev_text = "";
-        this.next_text = "完成";
+        this.next_text = "DONE";
       } else if (this.carouselIndex == 0) {
-        this.prev_text = "跳过";
-        this.next_text = "继续";
+        this.prev_text = "SKIP";
+        this.next_text = "NEXT";
       }
     }
   }

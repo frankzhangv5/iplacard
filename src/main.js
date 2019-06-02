@@ -35,7 +35,7 @@ Vue.component('custom-toolbar', CustomToolbar);
 Vue.component('effect', Effect);
 
 const i18n = new VueI18n({
-  locale: localStorage.getItem('locale') || 'zh_CN',
+  locale: localStorage.getItem('locale') || 'en_US',
   fallbackLocale: 'en_US',
   messages: {
     'zh_CN': require('./lang/zh_CN'),
