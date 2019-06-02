@@ -4,11 +4,11 @@
     <v-ons-list>
       <v-ons-list-item
         style="padding:0;"
-        v-for="effect of effects"
-        :key="effect.label"
+        v-for="scene of scenes"
+        :key="scene.label"
         modifier="divider"
       >
-        <effect v-bind="effect"></effect>
+        <effect v-bind="scene" infinite="true"></effect>
       </v-ons-list-item>
     </v-ons-list>
   </v-ons-page>
@@ -19,48 +19,12 @@ import { mapState } from "vuex";
 
 export default {
   data() {
-    return {
-      effects: [
-        {
-          label: "机场接人",
-          fontFamily: "Monospace",
-          fontSize: 6,
-          bgColor: "#07c160",
-          txtColor: "#ffffff",
-          animate: "bounce",
-          infinite: true
-        },
-        {
-          label: "火车站接人",
-          fontFamily: "Monospace",
-          fontSize: 6,
-          bgColor: "#2e8cff",
-          txtColor: "#ffffff",
-          animate: "flash",
-          infinite: true
-        },
-        {
-          label: "滴滴等车",
-          fontFamily: "Monospace",
-          fontSize: 6,
-          bgColor: "#fe523c",
-          txtColor: "#ffffff",
-          animate: "heartBeat",
-          infinite: true
-        },
-        {
-          label: "演唱会",
-          fontFamily: "Monospace",
-          fontSize: 6,
-          bgColor: "#ffb129",
-          txtColor: "#ffffff",
-          animate: "swing",
-          infinite: true
-        }
-      ]
-    };
+    return {};
   },
   computed: {
+    scenes: function() {
+      return this.$configs.scenes;
+    },
     ...mapState({
       text: state => state.settings.text
     })

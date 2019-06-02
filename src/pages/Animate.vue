@@ -24,7 +24,7 @@
         :key="effect.label"
         modifier="divider"
       >
-        <effect v-bind="effect"></effect>
+        <effect v-bind="effect" :infinite="isInfinite"></effect>
       </v-ons-list-item>
     </v-ons-list>
     <!-- <v-ons-list>
@@ -34,15 +34,13 @@
 </template>
 
 <script>
-import animates from "../assets/animate.json";
-import colors from "../assets/color.json";
 // import Vue from "vue/dist/vue.js";
 import { mapState } from "vuex";
 
 export default {
   data() {
     return {
-      isInfinite: this.tabIndex === 1,
+      isInfinite: this.tabIndex === 1
       // renderItem: i =>
       //   new Vue({
       //     inheritAttrs: false,
@@ -61,20 +59,7 @@ export default {
   },
   computed: {
     effects: function() {
-      let efs = [];
-      for (let i = 0; i < animates.length; i++) {
-        let anim = animates[i];
-        efs.push({
-          infinite: this.isInfinite,
-          label: anim,
-          fontFamily: "Monospace",
-          fontSize: 8,
-          bgColor: colors[i],
-          txtColor: "#ffffff",
-          animate: anim
-        });
-      }
-      return efs;
+      return this.$configs.effects;
     },
     ...mapState({
       tabIndex: state => state.tabbar.index

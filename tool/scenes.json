@@ -1,0 +1,34 @@
+[
+    {
+        "label": "机场接人",
+        "fontFamily": "Monospace",
+        "fontSize": 8,
+        "bgColor": "#07c160",
+        "txtColor": "#ffffff",
+        "animate": "bounce"
+    },
+    {
+        "label": "火车站接人",
+        "fontFamily": "Monospace",
+        "fontSize": 8,
+        "bgColor": "#2e8cff",
+        "txtColor": "#ffffff",
+        "animate": "flash"
+    },
+    {
+        "label": "滴滴等车",
+        "fontFamily": "Monospace",
+        "fontSize": 8,
+        "bgColor": "#fe523c",
+        "txtColor": "#ffffff",
+        "animate": "heartBeat"
+    },
+    {
+        "label": "演唱会",
+        "fontFamily": "Monospace",
+        "fontSize": 8,
+        "bgColor": "#ffb129",
+        "txtColor": "#ffffff",
+        "animate": "swing"
+    }
+]

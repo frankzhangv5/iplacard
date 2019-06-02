@@ -86,54 +86,19 @@
 </template>
 
 <script>
-import animateNames from "../assets/animate.json";
-
 export default {
   data() {
-    return {
-      fonts: [
-        { text: "Monospace", value: "Monospace" },
-        { text: "Serif", value: "Serif" },
-        { text: "Sans-Serif", value: "Sans-Serif" },
-        { text: "Roboto", value: "'Roboto', Verdana, sans-serif" },
-        {
-          text: "Apple System",
-          value: '-apple-system, "Helvetica Neue", "Helvetica", "Arial"'
-        },
-        { text: "Texas LED", value: "'texas_ledregular', Arial, sans-serif" },
-      ],
-      fontSizes: [
-        { text: "1em", value: 1 },
-        { text: "2em", value: 2 },
-        { text: "3em", value: 3 },
-        { text: "4em", value: 4 },
-        { text: "5em", value: 5 },
-        { text: "6em", value: 6 },
-        { text: "7em", value: 7 },
-        { text: "8em", value: 8 },
-        { text: "9em", value: 9 },
-        { text: "10em", value: 10 },
-        { text: "11em", value: 11 },
-        { text: "12em", value: 12 },
-        { text: "13em", value: 13 },
-        { text: "14em", value: 14 },
-        { text: "15em", value: 15 },
-        { text: "16em", value: 16 },
-        { text: "17em", value: 17 },
-        { text: "18em", value: 18 },
-        { text: "19em", value: 19 },
-        { text: "20em", value: 20 },
-      ],
-      opacity: 0.5
-    };
+    return {};
   },
   computed: {
     animates: function() {
-      let anims = [];
-      for (let anim of animateNames) {
-        anims.push({ text: anim, value: anim });
-      }
-      return anims;
+      return this.$configs.animates;
+    },
+    fonts: function() {
+      return this.$configs.fonts;
+    },
+    fontSizes: function() {
+      return this.$configs.fontSizes;
     },
     selectedFontSize: {
       get() {

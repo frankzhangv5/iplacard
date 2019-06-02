@@ -7,7 +7,7 @@ import 'animate.css/animate.min.css';
 import './assets/neon.css';
 
 // fonts
-import './fonts/texas_ledregular/stylesheet.css';
+import './fonts/stylesheet.css';
 
 // JS plugin import
 import Vue from 'vue';
@@ -21,9 +21,12 @@ import App from './App.vue';
 import CustomToolbar from './components/CustomToolbar.vue';
 import Effect from './components/Effect.vue';
 
+import configs from "./assets/configs.json";
+
 Vue.use(Vuex);
 Vue.use(VueOnsen);
 Vue.use(VueI18n);
+Vue.prototype.$configs = configs;
 
 Vue.config.productionTip = false
 

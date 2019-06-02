@@ -4,11 +4,10 @@ import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex);
 
- const strictMode = process.env.NODE_ENV !== 'production';
+const strictMode = process.env.NODE_ENV !== 'production';
 
 export default new Vuex.Store({
   state: {
-    app_name: "闪光",
     app_version: "1.1"
   },
   plugins: [createPersistedState()],
@@ -77,11 +76,12 @@ export default new Vuex.Store({
       namespaced: true,
       state: {
         bgColor: "#000000",
-        text: "Welcome to Wuhan !",
+        text: "Welcome to Earth !",
         fontSize: 8,
-        fontFamily: '-apple-system, "Helvetica Neue", "Helvetica", "Arial"',
+        fontFamily: "Helvetica Neue",
         txtColor: "#ffffff",
         animate: "neonBlue",
+        label: "neonBlue",
         lang: 'zh_CN',
         theme: [255, 59, 61],
         favorites: []
@@ -104,6 +104,9 @@ export default new Vuex.Store({
         },
         setAnimate(state, animate) {
           state.animate = animate;
+        },
+        setLabel(state, label) {
+          state.label = label;
         },
         setLanguage(state, lang) {
           state.lang = lang;

@@ -52,7 +52,7 @@ export default {
   computed: {
     isFavoriteChecked: {
       get: function() {
-        if (this.favorites.indexOf(this.animate) != -1) {
+        if (this.favorites.indexOf(this.label) != -1) {
           return true;
         }
         return false;
@@ -61,7 +61,7 @@ export default {
     },
     isUseChecked: {
       get: function() {
-        if (this.animateInuse === this.animate) {
+        if (this.labelInuse === this.label) {
           return true;
         }
         return false;
@@ -74,12 +74,13 @@ export default {
         : `animated ${this.animate}`;
     },
     previewTextStyle: function() {
-      return `font-size:${this.fontSize / 3.0}em;font-family:${
+      return `font-size:${this.fontSize / 3.5}em;font-family:${
         this.fontFamily
       };color:${this.txtColor};
       font-weight:bold;
       white-space:nowrap;
       overflow:hidden;
+      word-break:keep-all;
       text-overflow:ellipsis;`;
     },
     backgroundStyle: function() {
@@ -88,17 +89,17 @@ export default {
     ...mapState({
       text: state => state.settings.text,
       favorites: state => state.settings.favorites,
-      animateInuse: state => state.settings.animate
+      labelInuse: state => state.settings.label
     })
   },
 
   methods: {
     favorite() {
       if (this.isFavoriteChecked) {
-        this.$store.commit("settings/undoFavorite", this.animate);
+        this.$store.commit("settings/undoFavorite", this.label);
         this.isFavoriteChecked = false;
       } else {
-        this.$store.commit("settings/doFavorite", this.animate);
+        this.$store.commit("settings/doFavorite", this.label);
         this.isFavoriteChecked = true;
       }
       this.sliderStyle = "transform:translateX(0px)";
@@ -123,6 +124,7 @@ export default {
         this.$store.commit("settings/setTextColor", this.txtColor);
         this.$store.commit("settings/setBackgroundColor", this.bgColor);
         this.$store.commit("settings/setAnimate", this.animate);
+        this.$store.commit("settings/setLabel", this.label);
         this.isUseChecked = true;
       }
       this.sliderStyle = "transform:translateX(0px)";

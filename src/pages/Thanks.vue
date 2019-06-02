@@ -103,6 +103,24 @@ export default {
           desc:
             "UpLabs is the place to find high-quality design resources for designers, creative agencies and developers Get Started. Latest Premium Downloads.",
           url: "https://www.uplabs.com/"
+        },
+        {
+          title: "DaFont",
+          desc:
+            "The fonts presented on this website are their authors' property, and are either freeware, shareware, demo versions or public domain. The licence mentioned above the download button is just an indication.",
+          url: "https://www.dafont.com/"
+        },
+        {
+          title: "FontSquirrel",
+          desc:
+            "Font Squirrel relies on advertising in order to keep bringing you great new free fonts and to keep making improvements to the web font generator. ",
+          url: "https://www.fontsquirrel.com/"
+        },
+        {
+          title: "字体天下",
+          desc:
+            "字体天下提供中文字体、手写字体、英文字体、图形字体等各种字体的高速免费下载和在线预览服务。",
+          url: "http://www.fonts.net.cn/"
         }
       ]
     };

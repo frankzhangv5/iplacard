@@ -82,12 +82,13 @@ export default {
       return `animated infinite ${this.animate}`;
     },
     previewTextStyle: function() {
-      return `font-size:${this.fontSize / 3.0}em;font-family:${
+      return `font-size:${this.fontSize / 3.5}em;font-family:${
         this.fontFamily
       };color:${this.txtColor};
       font-weight:bold;
       white-space:nowrap;
       overflow:hidden;
+      word-break:keep-all;
       text-overflow:ellipsis;`;
     },
 
@@ -100,7 +101,8 @@ export default {
       fontFamily: state => state.settings.fontFamily,
       txtColor: state => state.settings.txtColor,
       animate: state => state.settings.animate,
-      bgColor: state => state.settings.bgColor
+      bgColor: state => state.settings.bgColor,
+      label: state => state.settings.label
     })
   },
 
@@ -142,7 +144,7 @@ export default {
     },
     play() {
       this.preview({
-        label: "Default",
+        label: this.label,
         fontSize: this.fontSize,
         fontFamily: this.fontFamily,
         txtColor: this.txtColor,
@@ -165,7 +167,9 @@ export default {
       word-break:keep-all;`;
       this.modalVisible = true;
       // eslint-disable-next-line
-      console.log("on preview : " + effect);
+      console.log("on preview:");
+      // eslint-disable-next-line
+      console.log(effect);
     },
     push(page, key) {
       this.$store.commit("navigator/push", {
