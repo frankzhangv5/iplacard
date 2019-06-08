@@ -15,7 +15,7 @@
       </button>
     </v-ons-card>
     <v-ons-modal
-      @click="modalVisible = false"
+      @click="handleModalClick"
       @postshow="postshow"
       @prehide="prehide"
       :visible="modalVisible"
@@ -53,6 +53,7 @@ export default {
   },
   data() {
     return {
+      lock: false,
       modalVisible: false,
       modalStyle: "",
       effect: {}
@@ -77,6 +78,9 @@ export default {
           subtitle: this.$t("home.customizeSubtitle")
         }
       ];
+    },
+    lockStyle: function() {
+      return `display:${this.lock ? "" : "none"};`;
     },
     animateCls: function() {
       return `animated infinite ${this.animate}`;
@@ -108,10 +112,38 @@ export default {
 
   methods: {
     postshow(event) {
+      var lockButton = document.createElement("ons-icon");
+      lockButton.setAttribute("icon", "md-lock-open");
+      lockButton.setAttribute("size", "24px");
+      lockButton.setAttribute("color", "white");
+      lockButton.setAttribute(
+        "style",
+        "padding-bottom:10px;display:table-cell;vertical-align: middle;visibility:visible;"
+      );
+      lockButton.setAttribute("id", "lock-button");
+      var self = this;
+      lockButton.addEventListener("click", function(event) {
+        // eslint-disable-next-line
+        console.log("lock button clicked.");
+        event.stopPropagation();
+        if (self.lock) {
+          lockButton.setAttribute("icon", "md-lock-open");
+          self.lock = false;
+        } else {
+          lockButton.setAttribute("icon", "md-lock-outline");
+          self.lock = true;
+        }
+      });
+      setTimeout(function() {
+        lockButton.style.visibility = "hidden";
+      }, 5000);
+      event.modal.appendChild(lockButton);
+
       let el = event.modal.getElementsByClassName("modal__content")[0];
       el.className += ` animated infinite ${this.effect.animate}`;
       el.style.fontFamily = this.effect.fontFamily;
       el.style.color = this.effect.txtColor;
+      el.style.display = "table-cell";
       window.plugins &&
         window.plugins.insomnia &&
         window.plugins.insomnia.keepAwake(
@@ -126,6 +158,10 @@ export default {
         );
     },
     prehide(event) {
+      var lockButton = document.getElementById("lock-button");
+      if (lockButton != null) {
+        event.modal.removeChild(lockButton);
+      }
       let el = event.modal.getElementsByClassName("modal__content")[0];
       el.className = "modal__content";
       el.style.fontFamily = "";
@@ -142,6 +178,20 @@ export default {
           }
         );
     },
+    handleModalClick() {
+      // eslint-disable-next-line
+      console.log("handleModalClick : " + this.lock);
+      var lockButton = document.getElementById("lock-button");
+
+      if (!this.lock && lockButton.style.visibility === "visible") {
+        this.modalVisible = false;
+        return;
+      }
+      lockButton.style.visibility = "visible";
+      setTimeout(function() {
+        lockButton.style.visibility = "hidden";
+      }, 5000);
+    },
     play() {
       this.preview({
         label: this.label,
@@ -151,10 +201,12 @@ export default {
         bgColor: this.bgColor,
         animate: this.animate
       });
+      // el.style.alignItems = "center";
     },
     preview(effect) {
       this.effect = effect;
-      this.modalStyle = `font-size:${effect.fontSize}em;
+      this.modalStyle = `
+      font-size:${effect.fontSize}em;
       font-family:${effect.fontFamily};
       color:${effect.txtColor};
       background-color:${effect.bgColor} !important;
@@ -169,7 +221,7 @@ export default {
       // eslint-disable-next-line
       console.log("on preview:");
       // eslint-disable-next-line
-      console.log(effect);
+      // console.log(effect);
     },
     push(page, key) {
       this.$store.commit("navigator/push", {
