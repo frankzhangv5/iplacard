@@ -137,13 +137,15 @@ export default {
       setTimeout(function() {
         lockButton.style.visibility = "hidden";
       }, 5000);
-      event.modal.appendChild(lockButton);
 
       let el = event.modal.getElementsByClassName("modal__content")[0];
       el.className += ` animated infinite ${this.effect.animate}`;
       el.style.fontFamily = this.effect.fontFamily;
       el.style.color = this.effect.txtColor;
       el.style.display = "table-cell";
+
+      event.modal.appendChild(lockButton);
+
       window.plugins &&
         window.plugins.insomnia &&
         window.plugins.insomnia.keepAwake(
