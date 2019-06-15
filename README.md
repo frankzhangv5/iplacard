@@ -1,6 +1,6 @@
 # iPlacard
-框架：OnsenUI+Vue+Animate.css+Cordova。
-用途：电子接机牌，手持标语，座位牌等。
+- 框架：OnsenUI + Vue + Animate.css + Cordova。
+- 用途：电子接机牌，手持标语，座位牌等。
 
 
 ## Project setup
@@ -10,18 +10,18 @@ npm install
 >如果在中国，需要使用淘宝的npm registry，在npm install前执行：
 `npm config set registry https://registry.npm.taobao.org`
 
-### Compiles and hot-reloads for development
+#### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production of Cordova
+#### Compiles and minifies for production of Cordova
 ```
 npm run cordova-build-android
 ```
 
 
-### Credits
+## Credits
 - [Animate.css](https://daneden.github.io/animate.css)
 - [Cordova](https://cordova.apache.org)
 - [cordova-plugin-splashscreen](https://github.com/apache/cordova-plugin-splashscreen)
@@ -42,5 +42,5 @@ npm run cordova-build-android
 - [字体天下](http://www.fonts.net.cn)
 
 
-### App's screenshots
+## Screenshots
 ![HOME](screenshots/Home.png)
