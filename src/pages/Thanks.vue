@@ -67,7 +67,7 @@ export default {
           title: "vue-onsenui",
           desc:
             "With Onsen UI you can create beautiful and performant hybrid apps that run on both Android and iOS. This package contains Vue.js v2 bindings and components that make it easy to integrate the Onsen UI components in Vue apps.",
-          url: "https://onsen.io/"
+          url: "https://onsen.io/vue"
         },
         {
           title: "vue-github-button",
