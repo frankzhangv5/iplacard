@@ -29,7 +29,6 @@ buildscript {
         // in the individual module build.gradle files
 
         classpath 'com.android.tools.build:gradle:3.3.0'
-        classpath 'com.baidu.mobstat:mtj-circle-plugin:latest.integration'
     }
 }
 

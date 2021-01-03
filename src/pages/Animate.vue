@@ -40,7 +40,8 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      isInfinite: this.tabIndex === 1
+      isInfinite: false
+      //this.tabIndex === 1
       // renderItem: i =>
       //   new Vue({
       //     inheritAttrs: false,
@@ -70,7 +71,7 @@ export default {
       // eslint-disable-next-line
       console.log("currentTabIndex:" + this.tabIndex);
       if (this.tabIndex === 1) {
-        this.isInfinite = true;
+        this.isInfinite = false;
       } else {
         this.isInfinite = false;
       }

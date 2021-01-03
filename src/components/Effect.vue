@@ -1,9 +1,14 @@
 <template>
-  <div class="slider" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
+  <div
+    class="slider"
+    @touchstart="touchStart"
+    @touchmove="touchMove"
+    @touchend="touchEnd"
+  >
     <div class="content" :style="sliderStyle">
-      <div class="title">{{label}}</div>
+      <div class="title">{{ label }}</div>
       <div class="preview" :style="backgroundStyle">
-        <div :class="animateCls" :style="previewTextStyle">{{text}}</div>
+        <div :class="animateCls" :style="previewTextStyle">{{ text }}</div>
       </div>
     </div>
     <div class="menu" ref="menu">
@@ -11,7 +16,7 @@
         <v-ons-icon
           size="24px"
           class="favorite"
-          :class="{checked: isFavoriteChecked}"
+          :class="{ checked: isFavoriteChecked }"
           icon="md-favorite"
         ></v-ons-icon>
       </div>
@@ -19,7 +24,12 @@
         <v-ons-icon size="24px" class="play" icon="md-play"></v-ons-icon>
       </div>
       <div class="icon" @click="use">
-        <v-ons-icon size="24px" class="use" :class="{checked: isUseChecked}" icon="md-check"></v-ons-icon>
+        <v-ons-icon
+          size="24px"
+          class="use"
+          :class="{ checked: isUseChecked }"
+          icon="md-check"
+        ></v-ons-icon>
       </div>
     </div>
   </div>
@@ -37,7 +47,7 @@ export default {
     "txtColor",
     "bgColor",
     "animate",
-    "infinite"
+    "infinite",
   ],
   data() {
     return {
@@ -45,35 +55,35 @@ export default {
       endX: 0,
       moveX: 0,
       disX: 0,
-      sliderStyle: ""
+      sliderStyle: "",
     };
   },
 
   computed: {
     isFavoriteChecked: {
-      get: function() {
+      get: function () {
         if (this.favorites.indexOf(this.label) != -1) {
           return true;
         }
         return false;
       },
-      set: function() {}
+      set: function () {},
     },
     isUseChecked: {
-      get: function() {
+      get: function () {
         if (this.labelInuse === this.label) {
           return true;
         }
         return false;
       },
-      set: function() {}
+      set: function () {},
     },
-    animateCls: function() {
+    animateCls: function () {
       return this.infinite
         ? `animated infinite ${this.animate}`
         : `animated ${this.animate}`;
     },
-    previewTextStyle: function() {
+    previewTextStyle: function () {
       return `font-size:${this.fontSize / 3.5}em;font-family:${
         this.fontFamily
       };color:${this.txtColor};
@@ -83,14 +93,14 @@ export default {
       word-break:keep-all;
       text-overflow:ellipsis;`;
     },
-    backgroundStyle: function() {
+    backgroundStyle: function () {
       return `background-color:${this.bgColor} !important;`;
     },
     ...mapState({
-      text: state => state.settings.text,
-      favorites: state => state.settings.favorites,
-      labelInuse: state => state.settings.label
-    })
+      text: (state) => state.settings.text,
+      favorites: (state) => state.settings.favorites,
+      labelInuse: (state) => state.settings.label,
+    }),
   },
 
   methods: {
@@ -113,7 +123,7 @@ export default {
         fontFamily: this.fontFamily,
         txtColor: this.txtColor,
         bgColor: this.bgColor,
-        animate: this.animate
+        animate: this.animate,
       });
       this.sliderStyle = "transform:translateX(0px)";
     },
@@ -167,8 +177,8 @@ export default {
           this.sliderStyle = "transform:translateX(-" + wd + "px)";
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -188,8 +198,9 @@ export default {
   right: 0;
   top: 0;
   bottom: 0;
+  height: 180px;
   transition: 0.3s;
-  z-index: 100;
+  z-index: 1;
 }
 .slider > .content > .title {
   font-family: -apple-system, "Helvetica Neue", "Helvetica", "Arial",
@@ -199,17 +210,20 @@ export default {
   color: #2979ff;
   width: 100%;
   line-height: 30px;
+  height: 30px;
 }
 .slider > .content > .preview {
   text-align: center;
   width: 100%;
   line-height: 150px;
+  height: 150px;
 }
 
 .slider > .menu {
   position: absolute;
-  width: 20%;
-  /* line-height: 147px; */
+  width: 16%;
+  height: 150px;
+  line-height: 150px;
   right: 0;
   bottom: 0;
   background-color: #07c160;
@@ -217,7 +231,7 @@ export default {
 
 .slider > .menu > .icon {
   color: white;
-  line-height: 46.5px;
+  line-height: 45px;
 }
 .favorite:hover {
   color: black;

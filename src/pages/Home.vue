@@ -1,14 +1,14 @@
 <template>
   <v-ons-page modifier="white">
-    <v-ons-card style="margin:0; margin-bottom:10px;padding:0;">
+    <v-ons-card style="margin: 0; margin-bottom: 10px; padding: 0">
       <div id="preview" v-if="!modalVisible" :style="backgroundStyle">
-        <div :class="animateCls" :style="previewTextStyle">{{text}}</div>
+        <div :class="animateCls" :style="previewTextStyle">{{ text }}</div>
       </div>
 
       <button
         class="button button--material--flat"
         button--material--flat
-        style="width: 100%;"
+        style="width: 100%"
         @click="play"
       >
         <v-ons-icon size="24px" icon="md-play"></v-ons-icon>
@@ -20,9 +20,10 @@
       @prehide="prehide"
       :visible="modalVisible"
       :style="modalStyle"
-    >{{text}}</v-ons-modal>
+      >{{ text }}</v-ons-modal
+    >
     <v-ons-list>
-      <v-ons-list-header>{{$t('my.settings')}}</v-ons-list-header>
+      <v-ons-list-header>{{ $t("my.settings") }}</v-ons-list-header>
       <v-ons-list-item
         v-for="item of items"
         :key="item.title"
@@ -30,8 +31,8 @@
         modifier="chevron"
         tappable
       >
-        <span class="list-item__title">{{item.title}}</span>
-        <span class="list-item__subtitle">{{item.subtitle}}</span>
+        <span class="list-item__title">{{ item.title }}</span>
+        <span class="list-item__subtitle">{{ item.subtitle }}</span>
       </v-ons-list-item>
     </v-ons-list>
   </v-ons-page>
@@ -45,10 +46,11 @@ import { mapState } from "vuex";
 import { eventHub } from "../event.js";
 
 export default {
-  created: function() {
+  created: function () {
     eventHub.$on("preview", this.preview);
+    document.addEventListener("backbutton", this.onBackKeyDown, false);
   },
-  beforeDestroy: function() {
+  beforeDestroy: function () {
     eventHub.$off("preview", this.preview);
   },
   data() {
@@ -56,36 +58,40 @@ export default {
       lock: false,
       modalVisible: false,
       modalStyle: "",
-      effect: {}
+      isInfinite: true,
+      effect: {},
     };
   },
   computed: {
-    items: function() {
+    items: function () {
       return [
         {
           component: TextEditor,
           title: this.$t("home.edit"),
-          subtitle: this.text
+          subtitle: this.text,
         },
         {
           component: PredefinedScenes,
           title: this.$t("home.predefine"),
-          subtitle: this.$t("home.predefineSubtitle")
+          subtitle: this.$t("home.predefineSubtitle"),
         },
         {
           component: CustomizeEffect,
           title: this.$t("home.customize"),
-          subtitle: this.$t("home.customizeSubtitle")
-        }
+          subtitle: this.$t("home.customizeSubtitle"),
+        },
       ];
     },
-    lockStyle: function() {
+    lockStyle: function () {
       return `display:${this.lock ? "" : "none"};`;
     },
-    animateCls: function() {
-      return `animated infinite ${this.animate}`;
+
+    animateCls: function () {
+      return this.isInfinite
+        ? `animated infinite ${this.animate}`
+        : `animated ${this.animate}`;
     },
-    previewTextStyle: function() {
+    previewTextStyle: function () {
       return `font-size:${this.fontSize / 3.5}em;font-family:${
         this.fontFamily
       };color:${this.txtColor};
@@ -96,20 +102,31 @@ export default {
       text-overflow:ellipsis;`;
     },
 
-    backgroundStyle: function() {
+    backgroundStyle: function () {
       return `background-color:${this.bgColor} !important;`;
     },
     ...mapState({
-      text: state => state.settings.text,
-      fontSize: state => state.settings.fontSize,
-      fontFamily: state => state.settings.fontFamily,
-      txtColor: state => state.settings.txtColor,
-      animate: state => state.settings.animate,
-      bgColor: state => state.settings.bgColor,
-      label: state => state.settings.label
-    })
+      text: (state) => state.settings.text,
+      fontSize: (state) => state.settings.fontSize,
+      fontFamily: (state) => state.settings.fontFamily,
+      txtColor: (state) => state.settings.txtColor,
+      animate: (state) => state.settings.animate,
+      bgColor: (state) => state.settings.bgColor,
+      label: (state) => state.settings.label,
+      tabIndex: (state) => state.tabbar.index,
+    }),
   },
-
+  watch: {
+    tabIndex: function () {
+      // eslint-disable-next-line
+      console.log("currentTabIndex:" + this.tabIndex);
+      if (this.tabIndex === 0) {
+        this.isInfinite = true;
+      } else {
+        this.isInfinite = false;
+      }
+    },
+  },
   methods: {
     postshow(event) {
       var lockButton = document.createElement("ons-icon");
@@ -122,7 +139,7 @@ export default {
       );
       lockButton.setAttribute("id", "lock-button");
       var self = this;
-      lockButton.addEventListener("click", function(event) {
+      lockButton.addEventListener("click", function (event) {
         // eslint-disable-next-line
         console.log("lock button clicked.");
         event.stopPropagation();
@@ -134,7 +151,7 @@ export default {
           self.lock = true;
         }
       });
-      setTimeout(function() {
+      setTimeout(function () {
         lockButton.style.visibility = "hidden";
       }, 5000);
 
@@ -149,11 +166,11 @@ export default {
       window.plugins &&
         window.plugins.insomnia &&
         window.plugins.insomnia.keepAwake(
-          function() {
+          function () {
             // eslint-disable-next-line
             console.log("set keepAwake success");
           },
-          function() {
+          function () {
             // eslint-disable-next-line
             console.log("set keepAwake failed");
           }
@@ -170,11 +187,11 @@ export default {
       window.plugins &&
         window.plugins.insomnia &&
         window.plugins.insomnia.allowSleepAgain(
-          function() {
+          function () {
             // eslint-disable-next-line
             console.log("set allowSleepAgain success");
           },
-          function() {
+          function () {
             // eslint-disable-next-line
             console.log("set allowSleepAgain failed");
           }
@@ -190,7 +207,7 @@ export default {
         return;
       }
       lockButton.style.visibility = "visible";
-      setTimeout(function() {
+      setTimeout(function () {
         lockButton.style.visibility = "hidden";
       }, 5000);
     },
@@ -201,7 +218,7 @@ export default {
         fontFamily: this.fontFamily,
         txtColor: this.txtColor,
         bgColor: this.bgColor,
-        animate: this.animate
+        animate: this.animate,
       });
       // el.style.alignItems = "center";
     },
@@ -232,13 +249,20 @@ export default {
           return {
             toolbarInfo: {
               backLabel: this.$t("tabs.home"),
-              title: key
-            }
+              title: key,
+            },
           };
-        }
+        },
       });
-    }
-  }
+    },
+    onBackKeyDown(e) {
+      e.preventDefault();
+      // console.log("Back Button is Pressed!");
+      setTimeout(function () {
+        history.go(-1);
+      }, 200);
+    },
+  },
 };
 </script>
 
